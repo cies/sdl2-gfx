@@ -17,6 +17,7 @@ import Foreign.C
 import Graphics.UI.SDL.Video
 import Graphics.UI.SDL.General
 import Graphics.UI.SDL.Types
+import Graphics.UI.SDL.Raw (mkFinalizedSurface, mkFinalizedTexture)
 
 finalizeWhenNotNull :: String -> Ptr SurfaceStruct -> IO Surface
 finalizeWhenNotNull errMsg image

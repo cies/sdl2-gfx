@@ -10,7 +10,7 @@ Build-Type:         Custom
 Category:           Foreign binding
 Synopsis:           Bindings to libSDL2_gfx
 Extra-Source-Files: SDL-gfx.buildinfo.in, config.mk.in, configure, includes/HsSDLConfig.h.in
-Data-Files:         README, MACOSX
+Data-Files:         README
 
 Library
   Build-Depends:    base >= 3 && < 5, SDL2
@@ -21,7 +21,7 @@ Library
     Graphics.UI.SDL.Framerate
   -- Includes:         SDL.h SDL_framerate.h SDL_gfxPrimitives.h SDL_rotozoom.h
   Extra-Libraries:  SDL2_gfx
-  include-dirs: includes
+  -- include-dirs: includes
 
 
 source-repository head

@@ -1,2 +1,2 @@
-cc-options: -I/usr/local/include/SDL2 -D_THREAD_SAFE
+cc-options: -I/usr/include/SDL2 -D_REENTRANT
 ld-options: -lSDL_gfx
