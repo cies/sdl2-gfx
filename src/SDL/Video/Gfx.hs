@@ -11,6 +11,9 @@
 
 module SDL.Video.Gfx (
     drawAaCircle
+  , drawFilledCircle
+  , drawAaLine
+  , drawThickLine
   ) where
 
 import Control.Monad.IO.Class (MonadIO, liftIO)
@@ -36,5 +39,37 @@ drawAaCircle (Renderer renderer) (P (V2 x y)) rad (V4 r g b a) =
   throwIfNeg_ "SDL.Video.drawAaCircle" "aacircleRGBA" $
   Raw.aacircleRGBAFFI renderer x y rad r g b a
 
--- foreign import ccall "SDL2_primitives.h aacircleRGBA" aacircleRGBAFFI :: Renderer -> CInt -> CInt -> CInt -> Word8 -> Word8 -> Word8 -> Word8 -> IO CInt
+drawFilledCircle :: MonadIO m
+         => Renderer
+         -> Point V2 CInt -- ^ The center of the circle
+         -> CInt          -- ^ The radius of the circle
+         -> V4 Word8      -- ^ The color of the circle in RGBA
+         -> m ()
+drawFilledCircle (Renderer renderer) (P (V2 x y)) rad (V4 r g b a) =
+  liftIO $
+  throwIfNeg_ "SDL.Video.drawAaCircle" "aacircleRGBA" $
+  Raw.filledCircleRGBAFFI renderer x y rad r g b a
+
+drawThickLine :: MonadIO m
+         => Renderer
+         -> Point V2 CInt -- ^ The starting point of the line
+         -> Point V2 CInt -- ^ The ending point of the line
+         -> Word8         -- ^ The width of the line
+         -> V4 Word8      -- ^ The color of the line in RGBA
+         -> m ()
+drawThickLine (Renderer renderer) (P (V2 x y)) (P (V2 x' y')) width (V4 r g b a) =
+  liftIO $
+  throwIfNeg_ "SDL.Video.drawAaCircle" "aacircleRGBA" $
+  Raw.thickLineRGBAFFI renderer x y x' y' width r g b a
+
+drawAaLine :: MonadIO m
+         => Renderer
+         -> Point V2 CInt -- ^ The starting point of the line
+         -> Point V2 CInt -- ^ The ending point of the line
+         -> V4 Word8      -- ^ The color of the line in RGBA
+         -> m ()
+drawAaLine (Renderer renderer) (P (V2 x y)) (P (V2 x' y')) (V4 r g b a) =
+  liftIO $
+  throwIfNeg_ "SDL.Video.drawAaCircle" "aacircleRGBA" $
+  Raw.aalineRGBAFFI renderer x y x' y' r g b a
 
