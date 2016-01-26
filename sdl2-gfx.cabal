@@ -1,0 +1,44 @@
+name:               sdl2-gfx
+version:            0.2.0
+maintainer:         Joel Burget (joelburget@gmail.com)
+author:             Joel Burget (joelburget@gmail.com), Lemmih (lemmih@gmail.com)
+copyright:          2004-2005, 2010 - Lemmih; 2013 Joel Burget
+license-file:       LICENSE
+license:            BSD3
+build-Type:         Simple
+category:           Graphics
+synopsis:           Bindings to libSDL2_gfx in compatible with the sdl2 package.
+cabal-version:      >= 1.10
+data-files:         README.md
+
+library
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+                     , transformers >= 0.2 && < 0.5
+                     , sdl2
+                     , bytestring >= 0.10.4.0 && < 0.11
+                     , exceptions >= 0.4 && < 0.9
+                     , text >= 1.1.0.0 && < 1.3
+                     , linear >= 1.10.1.2 && < 1.21
+                     , vector >= 0.10.9.0 && < 0.12
+
+  default-extensions:  CPP, ForeignFunctionInterface, EmptyDataDecls
+  hs-source-dirs:      src/
+  exposed-modules:
+      SDL.Raw.Video.Gfx
+    --, SDL.Raw.Video.Gfx.Rotozoomer
+    --, SDL.Raw.Video.Gfx.Primitives
+    --, SDL.Raw.Video.Gfx.Framerate
+    , SDL.Video.Gfx
+    --, SDL.Video.Gfx.Rotozoomer
+    --, SDL.Video.Gfx.Primitives
+    --, SDL.Video.Gfx.Framerate
+  other-modules:       SDL.Exception
+  includes:            SDL.h SDL2_framerate.h SDL2_gfxPrimitives.h SDL2_rotozoom.h
+  extra-libraries:     SDL2 SDL2_gfx
+  Pkgconfig-Depends:   sdl2 >= 2.0.2
+
+source-repository head
+    type:     git
+    location: https://github.com/cies/sdl2-gfx.git
